@@ -41,6 +41,30 @@ public class ScreenerBean {
     @Expose
     private String name;
 
+    private ScreenerStockPrice screenerStockPrice;
+
+	private StockPricesEventDays stockPricesEventDays;
+
+	public StockPricesEventDays getStockPricesEventDays()
+	{
+		return stockPricesEventDays;
+	}
+
+	public void setStockPricesEventDays(StockPricesEventDays stockPricesEventDays)
+	{
+		this.stockPricesEventDays = stockPricesEventDays;
+	}
+
+	public ScreenerStockPrice getScreenerStockPrice()
+    {
+        return screenerStockPrice;
+    }
+
+    public void setScreenerStockPrice(ScreenerStockPrice screenerStockPrice)
+    {
+        this.screenerStockPrice = screenerStockPrice;
+    }
+
     public String getPrime() {
         return prime;
     }

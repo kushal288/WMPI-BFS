@@ -1,6 +1,7 @@
 package iiml.wmp.ibfs.base;
 
 import iiml.wmp.ibfs.beans.ScreenerBean;
+import iiml.wmp.ibfs.beans.ScreenerStockPrice;
 import iiml.wmp.ibfs.beans.ScreenerseachObj;
 import iiml.wmp.ibfs.http.client.HttpClientApache;
 import iiml.wmp.ibfs.http.client.WebHttpResponse;
@@ -34,16 +35,20 @@ public class ScreenerAPI
 
 
 	public static ScreenerBean getCompanyDetails(String q){
+		ScreenerBean sb = null;
 		ScreenerseachObj obj = getCompany(q);
-		if(obj!=null)
-			return getCompanyNumbers(obj);
-		return null;
+		if(obj!=null){
+			sb= getCompanyNumbers(obj);
+			ScreenerStockPrice ssp = getStockPrices(obj.getId());
+			sb.setScreenerStockPrice(ssp);
+		}
+		return sb;
 	}
 
 	public static ScreenerBean getCompanyNumbers(ScreenerseachObj comp){
 		WebHttpResponse whr = getCompDetails(comp);
 		logger.info("Details Response: {}",whr.getResponse());
-		TestUtils.writeResultsAsync(comp.getName(), whr, comp.getName()+"_numbers_"+ScreenerAPI.class.getSimpleName());
+		//TestUtils.writeResultsAsync(comp.getName(), whr, comp.getName()+"_numbers_"+ScreenerAPI.class.getSimpleName());
 		if(whr.getStatusCode()!=200)
 			return null;
 		ScreenerBean  arr = TestUtils.gson.fromJson(whr.getResponse(), ScreenerBean.class);
@@ -98,5 +103,27 @@ public class ScreenerAPI
 			e.printStackTrace();
 		}
 		return whr;
+	}
+
+	public static ScreenerStockPrice getStockPrices(Integer id)
+	{
+		ScreenerStockPrice ssp = null;
+		try
+		{
+			URIBuilder uriBuilder = new URIBuilder(screenerURL);
+			uriBuilder.setPath("/api/company/"+id+"/prices/");
+			uriBuilder.addParameter("what", "months");
+			uriBuilder.addParameter("period", "175");
+			String ccurl = uriBuilder.build().toString();
+			 WebHttpResponse whr = http.get(ccurl, headers);
+			 if(whr.getStatusCode()!=200)
+			 	return null;
+			 ssp = TestUtils.gson.fromJson(whr.getResponse(), ScreenerStockPrice.class);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return ssp;
 	}
 }
