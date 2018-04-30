@@ -26,11 +26,11 @@ public class ScreenerAPI
 	private static HttpClientApache http = new HttpClientApache();
 	static Map<String, String> headers = new HashMap<>();
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		headers.put("Accept","application/json");
 		System.out.println(TestUtils.gson.toJson(getCompanyDetails("orient paper")));
-	}
+	}*/
 
 
 	public static ScreenerBean getCompanyDetails(String q){

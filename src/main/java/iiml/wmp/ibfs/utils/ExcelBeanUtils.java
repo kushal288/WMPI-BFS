@@ -33,24 +33,8 @@ public class ExcelBeanUtils
 	private static Gson gson = new GsonBuilder().setLenient().excludeFieldsWithModifiers(Modifier.ABSTRACT).create();
 	private static Logger logger = LoggerFactory.getLogger(ExcelBeanUtils.class);
 
-	public static void main(String[] args)
-	{
-		try
-		{
 
-		}
-		catch (Exception e)
-		{
-			logger.error(
-					"Error Occured in \n Class: {}, \n Method: {},\n Error: {}\n",
-					ExcelBeanUtils.class.getClass().getName(),
-					e.getStackTrace()[0].getMethodName(),
-					e.getMessage(),
-					e);
-		}
-	}
-
-	private static <T> List<T> getSheetContents(String excelFile, String sheetName, Class<T> classOfT) throws Exception
+	public static <T> List<T> getSheetContents(String excelFile, String sheetName, Class<T> classOfT) throws Exception
 	{
 		if (classOfT == null)
 		{

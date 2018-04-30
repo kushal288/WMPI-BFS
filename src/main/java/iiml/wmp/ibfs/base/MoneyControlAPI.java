@@ -25,10 +25,10 @@ public class MoneyControlAPI
 	private static HttpClientApache http = new HttpClientApache();
 	static Map<String, String> headers = new HashMap<>();
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
-		System.out.println(getStockPrices("JEC", "20180429"));
-	}
+		System.out.println(getStockPrices("ITN", "20180424"));
+	}*/
 
 	public static Map<String, String> getStockPrices(String sc_id, String date)
 	{
