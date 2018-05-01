@@ -41,9 +41,21 @@ public class ScreenerBean {
     @Expose
     private String name;
 
-    private ScreenerStockPrice screenerStockPrice;
+    private ScreenerStockPrice screenerStockPrice = new ScreenerStockPrice();
 
-	private StockPricesEventDays stockPricesEventDays;
+	private StockPricesEventDays stockPricesEventDays = new StockPricesEventDays();
+
+	private ExcelBean excelBean = new ExcelBean();
+
+	public ExcelBean getExcelBean()
+	{
+		return excelBean;
+	}
+
+	public void setExcelBean(ExcelBean excelBean)
+	{
+		this.excelBean = excelBean;
+	}
 
 	public StockPricesEventDays getStockPricesEventDays()
 	{

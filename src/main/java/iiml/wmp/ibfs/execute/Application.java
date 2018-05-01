@@ -6,13 +6,20 @@ import iiml.wmp.ibfs.beans.ScreenerBean;
 import iiml.wmp.ibfs.beans.StockPricesEventDays;
 import iiml.wmp.ibfs.http.client.HttpClientApache;
 import iiml.wmp.ibfs.utils.ExcelBeanUtils;
+import iiml.wmp.ibfs.utils.ExcelWriter;
 import iiml.wmp.ibfs.utils.TaskExecutor;
 import iiml.wmp.ibfs.utils.TestUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -30,22 +37,40 @@ public class Application
 	{
 		try
 		{
-			FileUtils.deleteQuietly(new File("output"));
+			//FileUtils.deleteQuietly(new File("output"));
 			List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "analysis", ExcelBean.class);
+			String[] arr = { "json" };
+			Collection<File> files = FileUtils.listFiles(new File("output-data"), arr, false);
+			Map<String, ExcelBean> map = new HashMap<>();
 			for (ExcelBean eb : list)
 			{
-				try{
-					System.out.println(eb);
+				try
+				{
+					map.put(eb.getCompany() + ".json", eb);
+			/*		System.out.println(eb);
 					ScreenerBean sb = getCompanyDetails(eb.getCompany());
 					StockPricesEventDays stockPricesEventDays = getStockPricesEventDays(eb);
 					sb.setStockPricesEventDays(stockPricesEventDays);
-					writeDataToFile(eb.getCompany(), TestUtils.gson.toJson(sb));
-				}catch (Exception e){
-					System.out.println("Error for: "+eb);
+					writeDataToFile(eb.getCompany(), TestUtils.gson.toJson(sb));*/
+				}
+				catch (Exception e)
+				{
+					System.out.println("Error for: " + eb);
 					e.printStackTrace();
 				}
 
 			}
+			List<ScreenerBean> beans = new ArrayList<>();
+			for (File file : files)
+			{
+				ScreenerBean sb = TestUtils.gson.fromJson(FileUtils.readFileToString(file, StandardCharsets.UTF_8), ScreenerBean.class);
+
+				sb.setExcelBean(map.get(file.getName()));
+				beans.add(sb);
+
+			}
+
+			writeDataToExcel(beans);
 		}
 		catch (Exception e)
 		{
@@ -55,6 +80,34 @@ public class Application
 		{
 			cleanUp();
 		}
+	}
+
+	private static void writeDataToExcel(List<ScreenerBean> ls) throws Exception
+	{
+		Workbook wb = new XSSFWorkbook();
+		int coount =0;
+		for (ScreenerBean sb : ls)
+		{
+			try
+			{
+				System.out.println("File: " + sb.getExcelBean().getCompany() + " - " + TestUtils.gson.toJson(sb));
+				ExcelWriter.writeDataToExcel(wb, sb);
+				coount++;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+		System.out.println("Total data: "+coount);
+		// Write the output to a file
+		FileOutputStream fileOut = new FileOutputStream("companies-data-cumulative.xlsx");
+		wb.write(fileOut);
+		fileOut.close();
+
+		// Closing the workbook
+		wb.close();
 
 	}
 
