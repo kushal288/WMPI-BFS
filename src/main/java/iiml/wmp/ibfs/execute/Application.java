@@ -38,20 +38,21 @@ public class Application
 		try
 		{
 			//FileUtils.deleteQuietly(new File("output"));
-			List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "analysis", ExcelBean.class);
+			List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "bestcomp", ExcelBean.class);
 			String[] arr = { "json" };
-			Collection<File> files = FileUtils.listFiles(new File("output-data"), arr, false);
+
 			Map<String, ExcelBean> map = new HashMap<>();
 			for (ExcelBean eb : list)
 			{
 				try
 				{
 					map.put(eb.getCompany() + ".json", eb);
-			/*		System.out.println(eb);
+					System.out.println(eb);
 					ScreenerBean sb = getCompanyDetails(eb.getCompany());
 					StockPricesEventDays stockPricesEventDays = getStockPricesEventDays(eb);
 					sb.setStockPricesEventDays(stockPricesEventDays);
-					writeDataToFile(eb.getCompany(), TestUtils.gson.toJson(sb));*/
+					sb.setExcelBean(eb);
+					writeDataToFile(eb.getCompany(), TestUtils.gson.toJson(sb));
 				}
 				catch (Exception e)
 				{
@@ -60,12 +61,11 @@ public class Application
 				}
 
 			}
+			Collection<File> files = FileUtils.listFiles(new File("output"), arr, false);
 			List<ScreenerBean> beans = new ArrayList<>();
 			for (File file : files)
 			{
 				ScreenerBean sb = TestUtils.gson.fromJson(FileUtils.readFileToString(file, StandardCharsets.UTF_8), ScreenerBean.class);
-
-				sb.setExcelBean(map.get(file.getName()));
 				beans.add(sb);
 
 			}
@@ -129,7 +129,7 @@ public class Application
 	{
 		Map<String, Double> stocks = new HashMap<>();
 		LocalDate localDate = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-		for (int i = 1; i < 52; i++)
+		for (int i = 1; i < 200; i++)
 		{
 			LocalDate newdate = localDate.minusDays(i);
 			String price = MoneyControlAPI.getStockPrices(sc_id, format(newdate)).get("Last Price");
