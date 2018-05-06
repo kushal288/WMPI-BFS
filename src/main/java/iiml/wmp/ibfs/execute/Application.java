@@ -37,7 +37,7 @@ public class Application
 	{
 		try
 		{
-			//FileUtils.deleteQuietly(new File("output"));
+			FileUtils.deleteQuietly(new File("output"));
 			List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "bestcomp", ExcelBean.class);
 			String[] arr = { "json" };
 
@@ -129,7 +129,7 @@ public class Application
 	{
 		Map<String, Double> stocks = new HashMap<>();
 		LocalDate localDate = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-		for (int i = 1; i < 200; i++)
+		for (int i = 1; i < 250; i++)
 		{
 			LocalDate newdate = localDate.minusDays(i);
 			String price = MoneyControlAPI.getStockPrices(sc_id, format(newdate)).get("Last Price");
@@ -138,7 +138,7 @@ public class Application
 				stocks.put(format(newdate), Double.parseDouble(price));
 			}
 		}
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 50; i++)
 		{
 			LocalDate plusDays = localDate.plusDays(i);
 			String price = MoneyControlAPI.getStockPrices(sc_id, format(plusDays)).get("Last Price");
