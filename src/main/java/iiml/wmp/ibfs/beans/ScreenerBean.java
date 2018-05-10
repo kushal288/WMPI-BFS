@@ -2,6 +2,8 @@
 package iiml.wmp.ibfs.beans;
 
 import java.util.List;
+import java.util.Map;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -41,6 +43,21 @@ public class ScreenerBean {
     @Expose
     private String name;
 
+
+
+    @SerializedName("earningsData")
+    @Expose
+    private Map<String, Map<String, Double>> earningsData;
+
+    public Map<String, Map<String, Double>> getEarningsData()
+    {
+        return earningsData;
+    }
+
+    public void setEarningsData(Map<String, Map<String, Double>> earningsData)
+    {
+        this.earningsData = earningsData;
+    }
 
 
     private ScreenerStockPrice screenerStockPrice = new ScreenerStockPrice();
