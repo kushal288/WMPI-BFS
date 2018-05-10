@@ -41,6 +41,8 @@ public class ScreenerBean {
     @Expose
     private String name;
 
+
+
     private ScreenerStockPrice screenerStockPrice = new ScreenerStockPrice();
 
 	private StockPricesEventDays stockPricesEventDays = new StockPricesEventDays();

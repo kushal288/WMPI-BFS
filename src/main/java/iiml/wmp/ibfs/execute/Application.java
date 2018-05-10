@@ -160,9 +160,9 @@ public class Application
 		return null;
 	}
 
-	static List<String> formatStrings = Arrays.asList("d/M/y", "d-M-y", "M/y", "dd/MM/yyyy");
+	static List<String> formatStrings = Arrays.asList("dd/MM/yy","dd-MM-yy","d/M/y", "d-M-y", "M/y","dd/MM/yyyy","dd/MM/yyyy","dd-MM-yyyy");
 
-	static Date getDateFormat(String date)
+	public static Date getDateFormat(String date)
 	{
 		for (String formatString : formatStrings)
 		{
