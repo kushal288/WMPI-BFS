@@ -37,9 +37,9 @@ public class Application
 	{
 		try
 		{
-			FileUtils.deleteQuietly(new File("output"));
-			List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "bestcomp", ExcelBean.class);
-			String[] arr = { "json" };
+			//FileUtils.deleteQuietly(new File("output"));
+			/*List<ExcelBean> list = ExcelBeanUtils.getSheetContents("data.xlsm", "bestcomp", ExcelBean.class);
+
 
 			Map<String, ExcelBean> map = new HashMap<>();
 			for (ExcelBean eb : list)
@@ -60,7 +60,8 @@ public class Application
 					e.printStackTrace();
 				}
 
-			}
+			}*/
+			String[] arr = { "json" };
 			Collection<File> files = FileUtils.listFiles(new File("output"), arr, false);
 			List<ScreenerBean> beans = new ArrayList<>();
 			for (File file : files)
@@ -69,8 +70,8 @@ public class Application
 				beans.add(sb);
 
 			}
-
-			writeDataToExcel(beans);
+			earningsData(beans);
+			//writeDataToExcel(beans);
 		}
 		catch (Exception e)
 		{
@@ -82,10 +83,121 @@ public class Application
 		}
 	}
 
+	private static void earningsData(List<ScreenerBean> ls) throws Exception
+	{
+		int coount = 0;
+		for (ScreenerBean sb : ls)
+		{
+			try
+			{
+				EarningsMangmtData.getEarningsData(sb);
+			//	System.out.println("earnings Data: " + TestUtils.gson.toJson(sb));
+				coount++;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+		System.out.println("Total data: " + coount);
+
+		int[] time = { -3, -2, -1, 0, 1, 2, 3, 4 , 5};
+		Map<Integer, Map<String, List<? extends Object>>> earnDataMap = new HashMap<>();
+		for (int i = 0; i < time.length; i++)
+		{
+			int yearInst = time[i];
+			System.out.println("Calculating for ith"+yearInst);
+			List<String> company = new ArrayList<>();
+			List<Double> op_asset_list = new ArrayList<>();
+			List<Double> ebit_asset_List = new ArrayList<>();
+			List<Double> ebit_sales_List = new ArrayList<>();
+			List<Double> sales_asset_List = new ArrayList<>();
+			List<Double> roe_List = new ArrayList<>();
+			Map<String, List<? extends Object>> iData = new HashMap<>();
+			iData.put("op/asset", op_asset_list);
+			iData.put("ebit/asset", ebit_asset_List);
+			iData.put("ebit/sales", ebit_sales_List);
+			iData.put("sales/asset",sales_asset_List ); iData.put("company", company);
+			iData.put("ROE", roe_List);
+			earnDataMap.put(yearInst, iData);
+			for (ScreenerBean sb : ls)
+			{
+				System.out.println("Company: "+sb.getShortName());
+				String exRightsDate = sb.getExcelBean().getEx_Rights();
+				System.out.println("Exrights Date str: " + exRightsDate);
+				Date exRights = getDateFormat(exRightsDate);
+				LocalDate localDate = Instant.ofEpochMilli(exRights.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+				int year = localDate.getYear();
+				System.out.println("Initial Year: " + year);
+				LocalDate refDate = LocalDate.of(year, 3, 31);
+				if (refDate.isAfter(localDate))
+					year = year - 1;
+				System.out.println("computed Year: " + year);
+				LocalDate dateRequired = LocalDate.of(year + yearInst, 03, 31);
+				String dateKey = dateRequired.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				System.out.println("Required Date: " + dateKey);
+				Double op = sb.getEarningsData().get("Operating Profit").get(dateKey);
+				Double sales = sb.getEarningsData().get("Sales").get(dateKey);
+				Double assets = sb.getEarningsData().get("Total Assets").get(dateKey);
+				Double dep = sb.getEarningsData().get("Depreciation").get(dateKey);
+				if (op == null || sales == null || assets == null || dep == null ||assets==0.0 ||sales==0.0)
+					continue;
+				Double ebit = op + dep;
+				company.add(sb.getShortName());
+				op_asset_list.add(op / assets);
+				sales_asset_List.add(sales / assets);
+				ebit_asset_List.add(ebit / assets);
+				ebit_sales_List.add(ebit / sales);
+				Double pat = sb.getEarningsData().get("Net Profit").get(dateKey);
+				Double sharecap = sb.getEarningsData().get("Share Capital").get(dateKey);
+				Double reserves = sb.getEarningsData().get("Reserves").get(dateKey);
+				Double equity = sharecap + reserves;
+				Double roe = pat/equity;
+				roe_List.add(roe);
+			}
+
+		}
+		System.out.println(TestUtils.gson.toJson(earnDataMap));
+		// Write the output to a file
+		writeDataToExcel(earnDataMap);
+
+	}
+
+	private static void writeDataToExcel(Map<Integer, Map<String, List<? extends Object>>> earnDataMap) throws Exception
+	{
+		Workbook wb = new XSSFWorkbook();
+		int coount = 0;
+		for (Integer year : earnDataMap.keySet())
+		{
+			try
+			{
+				Map<String, List<? extends Object>> dataMap = earnDataMap.get(year);
+
+				ExcelWriter.writeDataToExcel(wb, dataMap, year);
+				coount++;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+		System.out.println("Total data: " + coount);
+		// Write the output to a file
+		FileOutputStream fileOut = new FileOutputStream("earnings-data-cumulative.xlsx");
+		wb.write(fileOut);
+		fileOut.close();
+
+		// Closing the workbook
+		wb.close();
+
+	}
+
 	private static void writeDataToExcel(List<ScreenerBean> ls) throws Exception
 	{
 		Workbook wb = new XSSFWorkbook();
-		int coount =0;
+		int coount = 0;
 		for (ScreenerBean sb : ls)
 		{
 			try
@@ -100,7 +212,7 @@ public class Application
 			}
 
 		}
-		System.out.println("Total data: "+coount);
+		System.out.println("Total data: " + coount);
 		// Write the output to a file
 		FileOutputStream fileOut = new FileOutputStream("companies-data-cumulative.xlsx");
 		wb.write(fileOut);

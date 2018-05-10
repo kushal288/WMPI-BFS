@@ -60,6 +60,33 @@ public class ExcelWriter
 			"2006-03-31",
 			"2005-03-31");
 
+	static List<String> headR = Lists.newArrayList("company","op/asset", "ebit/asset", "ebit/sales","sales/asset","ROE");
+
+	public static void writeDataToExcel(Workbook wb, Map<String, List<? extends Object>> data, Integer year) throws Exception
+	{
+		Sheet sheet = wb.createSheet("Year = "+year);
+		int rowCount = 0;
+		Row headerRow = sheet.createRow(rowCount);
+		for (int i = 0; i < headR.size(); i++)
+		{
+			Cell cell = headerRow.createCell(i);
+			cell.setCellValue(headR.get(i));
+		}
+		rowCount++;
+		int rowSize = data.get("company").size();
+		for (int i = 0; i <rowSize ; i++, rowCount++)
+		{
+			Row dataRow = sheet.createRow(rowCount);
+			for (int j = 0; j <headR.size() ; j++)
+			 {
+				Object val = data.get(headR.get(j)).get(i);
+				Cell dataCell = dataRow.createCell(j);
+				 dataCell.setCellValue(String.valueOf(val));
+			}
+			
+		}
+	}
+
 	public static void writeDataToExcel(Workbook wb, ScreenerBean sb) throws Exception
 	{
 		int rowCount = 0;
