@@ -1,0 +1,71 @@
+REQUEST	RESPONSE	HTTP STATUS
+Aarey Drugs	[{"url":"/company/524412/","id":19,"name":"Aarey Drugs & Pharmaceuticals Ltd"}]	200
+Atul Auto	[{"url":"/company/ATULAUTO/","id":318,"name":"Atul Auto Ltd"}]	200
+BAMPSL Sec	[{"url":"/company/531591/","id":390,"name":"BAMPSL Securities Ltd"}]	200
+Bengal Tea	[{"url":"/company/532230/","id":426,"name":"Bengal Tea & Fabrics Ltd"}]	200
+BN Rathi Sec	[]	200
+Bodal Chemicals	[{"url":"/company/BODALCHEM/","id":524,"name":"Bodal Chemicals Ltd"}]	200
+Camlin Fine	[{"url":"/company/CAMLINFINE/consolidated/","id":575,"name":"Camlin Fine Sciences Ltd"}]	200
+Can Fin Homes	[{"url":"/company/CANFINHOME/","id":578,"name":"Can Fin Homes Ltd"}]	200
+Channel Nine	[{"url":"/company/535142/","id":347944,"name":"Channel Nine Entertainment Ltd"}]	200
+CIL Nova Petro	[{"url":"/company/CNOVAPETRO/","id":653,"name":"CIL Nova Petrochemicals Ltd"}]	200
+Comfort	[{"url":"/company/531216/","id":688,"name":"Comfort Intech Ltd"},{"url":"/company/534691/","id":100570,"name":"Comfort Commotrade Ltd"},{"url":"/company/535267/","id":360112,"name":"Comfort Fincap Ltd"}]	200
+Crest Ventures	[{"url":"/company/CREST/consolidated/","id":2966,"name":"Crest Ventures Ltd"}]	200
+Damodar Ind	[{"url":"/company/DAMODARIND/","id":764,"name":"Damodar Industries Ltd"}]	200
+Deccan Gold	[{"url":"/company/512068/","id":780,"name":"Deccan Gold Mines Ltd"}]	200
+Denis Chem Lab	[{"url":"/company/537536/","id":811692,"name":"Denis Chem Lab Ltd"}]	200
+Dion Global	[{"url":"/company/526927/consolidated/","id":833,"name":"Dion Global Solutions Ltd"}]	200
+Easun Reyrl	[]	200
+ECE Industries	[{"url":"/company/ECEIND/","id":879,"name":"ECE Industries Ltd"}]	200
+Eco Friendly	[{"url":"/company/534839/","id":199864,"name":"Eco Friendly Food Processing Park Ltd"}]	200
+EPC Industrie	[{"url":"/company/523754/","id":944,"name":"EPC Industrie Ltd"}]	200
+Exide Ind	[{"url":"/company/EXIDEIND/","id":982,"name":"Exide Industries Ltd"}]	200
+Filmcity Media	[{"url":"/company/531486/","id":1015,"name":"Filmcity Media Ltd"}]	200
+Fortis Health	[{"url":"/company/FORTIS/consolidated/","id":1040,"name":"Fortis Healthcare Ltd"}]	200
+Gangotri Iron	[{"url":"/company/530945/","id":1093,"name":"Gangotri Iron and Steel Company Ltd"}]	200
+Gayatri Project	[{"url":"/company/GAYAPROJ/consolidated/","id":1107,"name":"Gayatri Projects Ltd"}]	200
+Gemmia Oiltech	[{"url":"/company/511652/","id":2661,"name":"Gemmia Oiltech (India) Ltd"}]	200
+GMR Infra	[{"url":"/company/GMRINFRA/consolidated/","id":1159,"name":"GMR Infrastructure Ltd"}]	200
+Godrej Consumer	[{"url":"/company/GODREJCP/consolidated/","id":1164,"name":"Godrej Consumer Products Ltd"}]	200
+Godrej Prop	[{"url":"/company/GODREJPROP/consolidated/","id":98066,"name":"Godrej Properties Ltd"}]	200
+Golden Goenka	[{"url":"/company/530579/","id":1174,"name":"Golden Goenka Fincorp Ltd"}]	200
+Greenply Ind	[{"url":"/company/GREENPLY/","id":1209,"name":"Greenply Industries Ltd"}]	200
+High Energy	[{"url":"/company/504176/","id":1313,"name":"High Energy Batteries (India) Ltd"}]	200
+JMC Projects	[{"url":"/company/JMCPROJECT/consolidated/","id":1638,"name":"JMC Projects (India) Ltd"}]	200
+Johnson Control	[{"url":"/company/JCHAC/","id":1361,"name":"Johnson Controls-Hitachi Air Condition. India Ltd"}]	200
+Jyoti Structure	[{"url":"/company/JYOTISTRUC/","id":1671,"name":"Jyoti Structures Ltd"}]	200
+Kokuyo Camlin	[{"url":"/company/KOKUYOCMLN/","id":1812,"name":"Kokuyo Camlin Ltd"}]	200
+Krypton	[{"url":"/company/523550/","id":1837,"name":"Krypton Industries Ltd"}]	200
+LGB Forge	[{"url":"/company/LGBFORGE/","id":1882,"name":"LGB Forge Ltd"}]	200
+Murudeshwar Cer	[{"url":"/company/MURUDCERA/","id":2166,"name":"Murudeshwar Ceramics Ltd"}]	200
+Muthoot Cap	[{"url":"/company/MUTHOOTCAP/","id":2167,"name":"Muthoot Capital Services Ltd"}]	200
+Nandan Denim	[{"url":"/company/NDL/","id":2195,"name":"Nandan Denim Ltd"}]	200
+National Oxygen	[{"url":"/company/507813/","id":2207,"name":"National Oxygen Ltd"}]	200
+Neuland Lab	[{"url":"/company/NEULANDLAB/","id":2244,"name":"Neuland Laboratories Ltd"}]	200
+Nouveau Global	[{"url":"/company/531465/","id":2294,"name":"Nouveau Global Ventures Ltd"}]	200
+Orbit Exports	[{"url":"/company/ORBTEXP/","id":2346,"name":"Orbit Exports Ltd"}]	200
+Orient Paper	[{"url":"/company/ORIENTPPR/","id":2355,"name":"Orient Paper & Industries Ltd"}]	200
+Ramco System	[{"url":"/company/RAMCOSYS/consolidated/","id":2660,"name":"Ramco Systems Ltd"}]	200
+Rei Agro	[{"url":"/company/REIAGROLTD/","id":2716,"name":"REI Agro Ltd"}]	200
+Religare Enterp	[{"url":"/company/RELIGARE/","id":2731,"name":"Religare Enterprises Ltd"}]	200
+Rohit Ferro Tec	[{"url":"/company/ROHITFERRO/","id":2773,"name":"Rohit Ferro Tech Ltd"}]	200
+Sadbhav Engg	[{"url":"/company/SADBHAV/consolidated/","id":2829,"name":"Sadbhav Engineering Ltd"}]	200
+Sakthi Finance	[{"url":"/company/511066/","id":2846,"name":"Sakthi Finance Ltd"}]	200
+Sanguine Media	[{"url":"/company/531898/","id":2880,"name":"Sanguine Media Ltd"}]	200
+Shalimar Prod	[{"url":"/company/512499/","id":2958,"name":"Shalimar Productions Ltd"}]	200
+Sintex Ind	[{"url":"/company/SINTEX/consolidated/","id":3087,"name":"Sintex Industries Ltd"}]	200
+SML Isuzu	[{"url":"/company/SMLISUZU/","id":3105,"name":"SML ISUZU Ltd"}]	200
+Spectacle	[{"url":"/company/SPECTACLE/","id":3143,"name":"Spectacle Ventures Ltd"}]	200
+Sundaram Brake	[{"url":"/company/SUNDRMBRAK/","id":3251,"name":"Sundaram Brake Linings Ltd"}]	200
+Suzlon Energy	[{"url":"/company/SUZLON/consolidated/","id":3305,"name":"Suzlon Energy Ltd"}]	200
+Syncom Formula	[{"url":"/company/524470/","id":3328,"name":"Syncom Formulations (India) Ltd"}]	200
+Tata Power	[{"url":"/company/TATAPOWER/consolidated/","id":3371,"name":"Tata Power Company Ltd"}]	200
+Tata Steel	[{"url":"/company/TATASTEEL/consolidated/","id":3373,"name":"Tata Steel Ltd"}]	200
+Tinplate	[{"url":"/company/TINPLATE/","id":3428,"name":"Tinplate Company of India Ltd"}]	200
+Tulsyan NEC	[{"url":"/company/513629/","id":3494,"name":"Tulsyan NEC Ltd"}]	200
+UB Engineering	[{"url":"/company/UBENGG/","id":3519,"name":"UB Engineering Ltd"}]	200
+Ugar Sugar Work	[{"url":"/company/UGARSUGAR/","id":3523,"name":"Ugar Sugar Works Ltd"}]	200
+United Brew	[{"url":"/company/UBHOLDINGS/consolidated/","id":3547,"name":"United Breweries (Holdings) Ltd"},{"url":"/company/UBL/","id":3548,"name":"United Breweries Ltd"}]	200
+Upper Ganges	[{"url":"/company/UPERGANGES/","id":3569,"name":"Upper Ganges Sugar & Industries Ltd(Merged)"}]	200
+Vascon Engineer	[{"url":"/company/VASCONEQ/consolidated/","id":3617,"name":"Vascon Engineers Ltd"}]	200
+Zee Media	[{"url":"/company/ZEEMEDIA/consolidated/","id":3790,"name":"Zee Media Corporation Ltd"}]	200
