@@ -44,6 +44,7 @@ public class ScreenerBean {
     private String name;
 
 
+
     @SerializedName("earningsData")
     @Expose
     private Map<String, Map<String, Double>> earningsData;
@@ -57,6 +58,7 @@ public class ScreenerBean {
     {
         this.earningsData = earningsData;
     }
+
 
     private ScreenerStockPrice screenerStockPrice = new ScreenerStockPrice();
 
